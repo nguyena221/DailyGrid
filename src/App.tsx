@@ -20,12 +20,19 @@ function App() {
     // "/" = decides the intial screen for the user; replace: prevents loop if going back; replaces history 
     <Routes>  
       <Route path="/" element={<Navigate to="/login" replace />}   />
-      <Route path="/login" element={<Login />}  />  
-      <Route path="/signup" element={<Signup />}  /> 
-      <Route path="/calendar/monthly" element={<Monthly />}  />  
-      <Route path="/calendar/weekly" element={<Weekly />}  />  
-      <Route path="/calendar/daily" element={<Daily />}  />  
-      <Route path="/calendar/yearly" element={<Yearly />}  />  
+
+      {/* this tells the program to use these routes inside the layout files */}
+      <Route element={<AuthLayout />}> 
+        <Route path="/login" element={<Login />}  />  
+        <Route path="/signup" element={<Signup />}  /> 
+      </Route>
+
+      <Route element={<AppLayout />}>
+        <Route path="/calendar/monthly" element={<Monthly />}  />  
+        <Route path="/calendar/weekly" element={<Weekly />}  />  
+        <Route path="/calendar/daily" element={<Daily />}  />  
+        <Route path="/calendar/yearly" element={<Yearly />}  />  
+      </Route>
     </Routes>
   );
 }
