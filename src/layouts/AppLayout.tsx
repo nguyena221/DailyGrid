@@ -1,16 +1,17 @@
 // Layout for pages
-import { Outlet } from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
 function AppLayout() {
   return (
     // can put shared content above or below Outlet
     // <span> : label; no behaviors
+    // <NavLink> : when clicked, changes URL -> React Router sees change and renders page
     <div>
       <nav>
-        <span>Yearly</span>
-        <span>Monthly</span>
-        <span>Weekly</span>
-        <span>Daily</span>
+        <NavLink to="/calendar/yearly">Yearly</NavLink>
+        <NavLink to="/calendar/monthly">Monthly</NavLink>
+        <NavLink to="/calendar/weekly">Weekly</NavLink>
+        <NavLink to="/calendar/daily">Daily</NavLink>
       </nav>
 
       <Outlet />
