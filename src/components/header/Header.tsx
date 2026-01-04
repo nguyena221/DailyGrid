@@ -1,5 +1,4 @@
-// import React from 'react';
-// import ViewTabs from "./ViewTabs";
+import ViewTabs from "./ViewTabs";
 // import ProfileButton from "./ProfileButton";
 import DGLogo from "../../assets/images/DGLogo.png";
 
@@ -13,7 +12,7 @@ function Header() {
       </div>
 
       <div className="header-center">
-        {/* Tabs go here later */}
+        <ViewTabs />
       </div>
 
       <div className="header-right">
