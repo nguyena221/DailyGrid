@@ -1,6 +1,7 @@
 import ViewTabs from "./ViewTabs";
-// import ProfileButton from "./ProfileButton";
+import ProfileButton from "./ProfileButton";
 import DGLogo from "../../assets/images/DGLogo.png";
+import "../../styles/Header.css"
 
 function Header() {
   return (
@@ -16,7 +17,7 @@ function Header() {
       </div>
 
       <div className="header-right">
-        {/* Profile button goes here later */}
+        <ProfileButton />
       </div>
     </header>
   );
