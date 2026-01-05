@@ -1,3 +1,5 @@
+import "../../styles/CalendarHeader.css";
+
 // type: a strict list of allowed values tells Typescript what values should look like
 // "|" : or; must be one of these values
 type View = "daily" | "weekly" | "monthly" | "yearly";
