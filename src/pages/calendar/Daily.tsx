@@ -1,4 +1,8 @@
-export default function Daily() {
-    return <h1>Daily</h1>;
-  }
+
+
+function Daily() {
+  return <h1>Daily</h1>;
+}
+
+export default Daily;
   
