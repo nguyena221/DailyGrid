@@ -24,14 +24,6 @@ function App() {
       {/* this tells the program to use these routes inside the layout files */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />}  /> 
-        {/* <Route
-          path="login"
-          element={
-            <div style={{ padding: 40, fontSize: 32, color: "black" }}>
-              LOGIN ROUTE HIT
-            </div>
-          }
-        /> */}
         <Route path="signup" element={<Signup />} />
       </Route>
 

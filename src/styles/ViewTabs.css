@@ -3,7 +3,7 @@
     align-items: center;
     gap: clamp(16px, 1.5vw, 24px);
     position: relative;                 /* creates the "baseline" under al the tabs */
-    padding-bottom: 10px;               /* room for the line */
+    padding-bottom: 5px;               /* room for the line */
 }
 
 .view-tabs::after {             /* creates a fake element that doesn't exist in HTML; drawn by CSS; "Pretend there's a <div> here" */
@@ -13,9 +13,14 @@
     right: 0; 
     bottom: 2px; 
     height: 1px; 
-    background: #d1d5db; 
+    background: #cacaca; 
 }
 
 .tab {
     text-decoration: none; 
+    color: #cacaca; 
+}
+
+.tab.active {
+    color: black; 
 }
