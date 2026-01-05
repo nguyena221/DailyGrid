@@ -6,6 +6,9 @@ import "../../styles/ViewTabs.css";
 // aria-label : lets the user know what the nav is for
 // to : "go to this URL"
 // isActive : checks if this link matches the current URL (boolean)
+
+// <span> : label; no behaviors
+// <NavLink> : when clicked, changes URL -> React Router sees change and renders page
 function ViewTabs() {
   return (
     <nav className="view-tabs" aria-label="Calendar views tab">

@@ -1,9 +1,10 @@
 import Header from "../../components/header/Header";
+import AppLayout from "../../layouts/AppLayout";
 
 function Login() {
   return (
     <>
-      <Header />
+      <AppLayout />
       <h1>Login</h1>
     </>
   )
