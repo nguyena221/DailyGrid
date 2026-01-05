@@ -1,5 +1,6 @@
 // NavLink : link from React Router; changes URL when clicks -> rendered by React Router
 import { NavLink } from "react-router-dom";
+import "../../styles/ViewTabs.css";
 
 // JSX.Element is something that can be shown on the screen; "Just in case" annotations
 // aria-label : lets the user know what the nav is for

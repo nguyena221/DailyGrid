@@ -3,7 +3,8 @@
     align-items: center;                /* aligns each item center vertically; according to each other */
     justify-content: space-between;     /* spreads it out evenly across the screen; horizontally */
     height: 64px;                       /* height of header space */
-    padding: 0 24px; 
+    padding-left: clamp(10px, 2vw, 28px);
+    padding-right: clamp(10px, 2vw, 28px);
 }
 
 .header-left img {
