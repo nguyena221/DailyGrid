@@ -42,12 +42,13 @@ function startOfWeekSunday(d: Date) {
 
 // creates human-readable header text
 function formatHeaderTitle(view: View, date: Date) {
-  const locale = undefined;                     // locale : tells browswer language and regional formate to use; "undefined" = use whatever the user's browser is set to 
+  const locale = undefined; // locale : tells browswer language and regional formate to use; "undefined" = use whatever the user's browser is set to
 
   // one date
   if (view === "daily") {
-    return date.toLocaleDateString(locale, {    // gets users local date format
-      weekday: "long",                          // e/data type
+    return date.toLocaleDateString(locale, {
+      // gets users local date format
+      weekday: "long", // e/data type
       month: "long",
       day: "numeric",
       year: "numeric",
@@ -60,11 +61,10 @@ function formatHeaderTitle(view: View, date: Date) {
     const start = startOfWeekSunday(date);
     const end = addDays(start, 6);
 
-    // detects boundaries; if they are in the same month/year (ex: Dec 29 - Jan 4)
-    const sameMonth = start.getMonth() === end.getMonth();
+    // detects boundaries; if they are in the same year (ex: Dec 29 - Jan 4)
     const sameYear = start.getFullYear() === end.getFullYear();
 
-    // formates the start dates; includes year if crosses 
+    // formates the start dates; includes year if crosses
     const startStr = start.toLocaleDateString(locale, {
       month: "short",
       day: "numeric",
@@ -73,11 +73,11 @@ function formatHeaderTitle(view: View, date: Date) {
 
     // formates end dates; year is always shown
     const endStr = end.toLocaleDateString(locale, {
-        month: sameMonth ? undefined : "short",
-        day: "numeric",
-        year: "numeric",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
-    
+
     return `${startStr} – ${endStr}`;
   }
 
@@ -104,11 +104,11 @@ function getNextDate(view: View, date: Date, dir: 1 | -1) {
   }
 }
 
-// puts it all together; receives props 
+// puts it all together; receives props
 function CalendarHeader({ view, date, onDateChange, onToday }: Props) {
-  const title = formatHeaderTitle(view, date);                      // computes text shown                     // computes title string based on current view & date
+  const title = formatHeaderTitle(view, date); // computes text shown                     // computes title string based on current view & date
 
-  const prev = () => onDateChange(getNextDate(view, date, -1));     // navigation helpers; runs function; gets the newDate & calculation -> updates date with onDateChange
+  const prev = () => onDateChange(getNextDate(view, date, -1)); // navigation helpers; runs function; gets the newDate & calculation -> updates date with onDateChange
   const next = () => onDateChange(getNextDate(view, date, 1));
 
   // render UI
@@ -138,4 +138,4 @@ function CalendarHeader({ view, date, onDateChange, onToday }: Props) {
   );
 }
 
-export default CalendarHeader; 
+export default CalendarHeader;
