@@ -1,4 +1,3 @@
-import Header from "../../components/header/Header";
 import AppLayout from "../../layouts/AppLayout";
 
 function Login() {
