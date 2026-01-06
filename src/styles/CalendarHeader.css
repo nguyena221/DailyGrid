@@ -1,0 +1,49 @@
+/* CalendarHeader.css */
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cal-header-center {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cal-header-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  min-width: 200px;
+  text-align: center;
+}
+
+.cal-header-center button {
+  font-size: 29px;
+  width: 40px;
+  height: 36px;
+}
+
+.cal-header-actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.cal-header-actions button:hover {
+  background: #f3f4f6;
+}
+
+.cal-header button {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.cal-header button:hover {
+  opacity: 0.7;
+}

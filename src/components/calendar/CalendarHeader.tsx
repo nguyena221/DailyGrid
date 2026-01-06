@@ -1,4 +1,5 @@
 import "../../styles/CalendarHeader.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // type: a strict list of allowed values tells Typescript what values should look like
 // "|" : or; must be one of these values
@@ -118,13 +119,13 @@ function CalendarHeader({ view, date, onDateChange, onToday }: Props) {
     <div className="cal-header">
       <div className="cal-header-center">
         <button type="button" onClick={prev} aria-label="Previous">
-          ←
+          <ChevronLeft size={20} />
         </button>
 
         <h2 className="cal-header-title">{title}</h2>
 
         <button type="button" onClick={next} aria-label="Next">
-          →
+          <ChevronRight size={20} />
         </button>
       </div>
 
