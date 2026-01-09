@@ -1,0 +1,126 @@
+/* MonthGrid.css */
+
+/* Outer container */
+.calendar {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Header (prev / title / next / today) */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+/* Month title centered */
+.calendar-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+  text-align: center;
+}
+
+/* Buttons in header */
+.calendar-header button {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.calendar-header button:hover {
+  background: #f3f4f6;
+}
+
+/* Day-of-week labels row */
+.calendar-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.calendar-dow > div {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Main 7x6 grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  /* 6 rows will be created automatically since you render 42 cells */
+  grid-auto-rows: minmax(110px, 1fr);
+}
+
+/* Each day cell is a <button> */
+.day-cell {
+  border: 0;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Remove the last column's right border */
+.day-cell:nth-child(7n) {
+  border-right: 0;
+}
+
+.day-cell:hover {
+  background: #f9fafb;
+}
+
+/* Date number inside each cell */
+.date-number {
+  align-self: flex-end;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827;
+  opacity: 0.9;
+}
+
+/* Outside-month days (muted look) */
+.day-cell.outside {
+  background: #fafafa;
+  color: #9ca3af;
+}
+
+.day-cell.outside .date-number {
+  color: #9ca3af;
+}
+
+/* Today highlight */
+.day-cell.today {
+  outline: 2px solid #111827;
+  outline-offset: -2px; /* keeps it inside the cell */
+  background: #fff;
+}
+
+/* Keyboard accessibility: show focus ring */
+.day-cell:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}

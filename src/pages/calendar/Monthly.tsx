@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import MonthGrid from "../../components/calendar/MonthGrid";
+import MonthGrid from "../../components/calendar/MonthGrid";
 import CalendarHeader from "../../components/calendar/CalendarHeader";
 
 export default function Monthly() {
@@ -7,13 +7,24 @@ export default function Monthly() {
   // useState : gives your component memory
   // date : JS Date object
   // () => : lazy initialization
-  const [date, setDate] = useState(() => new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <>
-      <CalendarHeader view="monthly" date={date} onDateChange={setDate} />
-      {/* MonthGrid ... */}
-    </>
+    <div>
+      <CalendarHeader
+        view="monthly"
+        date={date}
+        onDateChange={setDate}
+        onToday={() => setDate(new Date())}
+      />
+
+      <MonthGrid
+        date={date}
+        weekStartsOnMonday={false}
+        onDayClick={(d) => console.log("clicked", d)}
+        renderDayContent={(d) => null}
+      />
+    </div>
   );
 }
   
