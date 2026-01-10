@@ -1,17 +1,47 @@
-/* WeekGrid.css */
-
-/* one source of truth for row height */
 .week {
   --slot-h: 56px;
 }
 
-/* body = time column + grid */
+.week-header {
+  display: grid;
+  align-items: stretch;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.week-corner {
+  border-right: 1px solid #e5e7eb;
+}
+
+.week-dayhead {
+  padding: 10px 8px;
+  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+.week-dayhead:last-child {
+  border-right: 0;
+}
+
+.week-dayname {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.week-daynum {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 2px;
+}
+
 .week-body {
   display: grid;
   grid-template-columns: 72px 1fr;
 }
 
-/* make time column a grid with the same row sizing as the main grid */
 .week-times {
   display: grid;
   grid-auto-rows: var(--slot-h);
@@ -24,13 +54,10 @@
   padding: 6px 8px;
   font-size: 11px;
   color: #6b7280;
-
-  /* keeps text aligned consistently */
   display: flex;
   align-items: flex-start;
 }
 
-/* main grid is also a grid with the same row sizing */
 .week-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -45,8 +72,6 @@
   cursor: pointer;
   padding: 6px;
   text-align: left;
-
-  /* important so borders/padding don’t shift sizing */
   box-sizing: border-box;
 }
 
@@ -54,7 +79,15 @@
   border-right: 0;
 }
 
-/* No-hour weekly view: 7 equal columns */
+.week-cell:hover {
+  background: #f9fafb;
+}
+
+.week-cell:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
 .week-nohours {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -77,4 +110,9 @@
 
 .week-daycolumn:hover {
   background: #f9fafb;
+}
+
+.week-daycolumn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
 }
