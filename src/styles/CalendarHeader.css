@@ -52,6 +52,8 @@
   opacity: 0.7;
 }
 
+/* ===== Toggle switch ===== */
+
 .switch {
   width: 44px;
   height: 26px;
@@ -63,6 +65,7 @@
   display: none;
 }
 
+/* track */
 .slider {
   width: 44px;
   height: 26px;
@@ -70,41 +73,52 @@
   border: 1px solid #d1d5db;
   background: #f3f4f6;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   padding: 2px;
   box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  transition: background 180ms ease, border-color 180ms ease;
 }
 
-.slider::after {
-  content: "";
+/* knob (ONLY circle) */
+.knob {
   width: 20px;
   height: 20px;
   border-radius: 999px;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #d1d5db;
-  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #6b7280;
   transform: translateX(0);
-  transition: transform 180ms ease;
+  transition: transform 180ms ease, color 180ms ease;
 }
 
+/* checked state */
 .switch input:checked + .slider {
   background: #111827;
   border-color: #111827;
 }
 
-.switch input:checked + .slider::after {
+.switch input:checked + .slider .knob {
   transform: translateX(18px);
+  color: #111827;
 }
 
-/* tooltip wrapper */
+/* ===== Tooltip ===== */
+
 .switch-tooltip {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-/* tooltip bubble */
 .tooltip {
   position: absolute;
   bottom: calc(100% + 6px);
@@ -113,7 +127,7 @@
   white-space: nowrap;
 
   background: #111827;
-  color: #fff;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 500;
   padding: 4px 8px;
