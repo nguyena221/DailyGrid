@@ -1,0 +1,55 @@
+/* WeekGrid.css */
+
+/* one source of truth for row height */
+.week {
+  --slot-h: 56px;
+}
+
+/* body = time column + grid */
+.week-body {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+}
+
+/* make time column a grid with the same row sizing as the main grid */
+.week-times {
+  display: grid;
+  grid-auto-rows: var(--slot-h);
+  border-right: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.week-time {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: #6b7280;
+
+  /* keeps text aligned consistently */
+  display: flex;
+  align-items: flex-start;
+}
+
+/* main grid is also a grid with the same row sizing */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: var(--slot-h);
+}
+
+.week-cell {
+  border: 0;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  padding: 6px;
+  text-align: left;
+
+  /* important so borders/padding don’t shift sizing */
+  box-sizing: border-box;
+}
+
+.week-cell:nth-child(7n) {
+  border-right: 0;
+}
