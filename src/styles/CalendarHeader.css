@@ -25,6 +25,14 @@
   height: 36px;
 }
 
+/* right-side actions (toggle + Today) */
+.cal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Today button */
 .cal-header-actions button {
   padding: 6px 12px;
   border-radius: 8px;
@@ -37,6 +45,7 @@
   background: #f3f4f6;
 }
 
+/* generic header buttons (chevrons) */
 .cal-header button {
   border: none;
   background: transparent;
@@ -46,4 +55,57 @@
 
 .cal-header button:hover {
   opacity: 0.7;
+}
+
+/* ===== Toggle switch ===== */
+
+.switch {
+  width: 44px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.slider::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  box-sizing: border-box;
+  transform: translateX(0);
+  transition: transform 180ms ease;
+}
+
+.switch input:checked + .slider {
+  background: #111827;
+  border-color: #111827;
+}
+
+.switch input:checked + .slider::after {
+  transform: translateX(18px);
+}
+
+.switch-label {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 600;
 }
