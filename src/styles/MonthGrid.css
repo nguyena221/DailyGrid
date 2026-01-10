@@ -1,17 +1,5 @@
 /* MonthGrid.css */
 
-/* Outer container */
-.calendar {
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  overflow: hidden;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
 /* Header (prev / title / next / today) */
 .calendar-header {
   display: flex;
