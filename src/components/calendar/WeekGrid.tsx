@@ -5,12 +5,13 @@ import { useMemo } from "react";
 
 // defines types & vars it can accept (Props)
 type WeekGridProps = {
-  date: Date;                                              // required: anchor date controlled by parent/header
-  startOnMonday?: boolean;                                  // optional ? if true -> Mon-Sun ; if false -> Sun-Sat
-  startHour?: number;                                       // optional ? first hour shown (default 9)
-  endHour?: number;                                         // optional ? last hour shown (default 20)
-  renderCell?: (day: Date, hour: number) => React.ReactNode;// optional ? custom content inside each hour cell
-  onCellClick?: (day: Date, hour: number) => void;          // optional ? callback for clicking an hour cell
+  date: Date;                                               // required: controlled by parent/header
+  startOnMonday?: boolean;                                   // optional ? if true -> Mon-Sun ; if false -> Sun-Sat
+  showHours?: boolean;                                       // optional ? if true -> show hourly grid
+  startHour?: number;                                        // optional ? first hour shown (default 9)
+  endHour?: number;                                          // optional ? last hour shown (default 20)
+  renderCell?: (day: Date, hour?: number) => React.ReactNode;// optional ? if showHours=false, hour is undefined
+  onCellClick?: (day: Date, hour?: number) => void;          // optional ? click day area or hour cell
 };
 
 // resets a Date to midnight so date comparisons are reliable
@@ -30,13 +31,11 @@ function startOfWeek(d: Date, startOnMonday: boolean): Date {
   const x = startOfDay(d);
   const day = x.getDay(); // 0 Sun ... 6 Sat
 
-  if (!startOnMonday) {
-    return addDays(x, -day); // go back to Sunday
-  }
+  if (!startOnMonday) return addDays(x, -day);
 
   // convert Sun-based index to Mon-based index
   const mondayIndex = (day + 6) % 7;
-  return addDays(x, -mondayIndex); // go back to Monday
+  return addDays(x, -mondayIndex);
 }
 
 // formats "9 AM", "10 AM", etc.
@@ -49,6 +48,7 @@ function formatHourLabel(hour24: number): string {
 export default function WeekGrid({
   date,
   startOnMonday = false,
+  showHours = false,
   startHour = 9,
   endHour = 20,
   renderCell,
@@ -56,9 +56,8 @@ export default function WeekGrid({
 }: WeekGridProps) {
   const anchor = startOfDay(date);
 
-  const { weekStart, days, hours } = useMemo(() => {
+  const { days, hours } = useMemo(() => {
     const weekStart = startOfWeek(anchor, startOnMonday);
-
     const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
 
     const hours = Array.from(
@@ -66,14 +65,19 @@ export default function WeekGrid({
       (_, i) => startHour + i
     );
 
-    return { weekStart, days, hours };
+    return { days, hours };
   }, [anchor, startOnMonday, startHour, endHour]);
 
   return (
     <div className="week">
-      {/* Header row: blank corner + 7 day headers */}
-      <div className="week-header">
-        <div className="week-corner" />
+      {/* Header row */}
+      <div
+        className="week-header"
+        style={{
+          gridTemplateColumns: showHours ? "72px repeat(7, 1fr)" : "repeat(7, 1fr)",
+        }}
+      >
+        {showHours && <div className="week-corner" />}
 
         {days.map((d) => (
           <div key={d.toISOString()} className="week-dayhead">
@@ -87,33 +91,49 @@ export default function WeekGrid({
         ))}
       </div>
 
-      {/* Body: left time column + grid */}
-      <div className="week-body">
-        {/* Time column */}
-        <div className="week-times">
-          {hours.map((h) => (
-            <div key={h} className="week-time">
-              {formatHourLabel(h)}
-            </div>
+      {/* BODY */}
+      {showHours ? (
+        <div className="week-body">
+          {/* Time column */}
+          <div className="week-times">
+            {hours.map((h) => (
+              <div key={h} className="week-time">
+                {formatHourLabel(h)}
+              </div>
+            ))}
+          </div>
+
+          {/* Hour grid */}
+          <div className="week-grid" role="grid" aria-label="Weekly hourly grid">
+            {hours.map((hour) =>
+              days.map((day) => (
+                <button
+                  key={`${day.toISOString()}-${hour}`}
+                  className="week-cell"
+                  type="button"
+                  onClick={() => onCellClick?.(day, hour)}
+                >
+                  {renderCell?.(day, hour)}
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      ) : (
+        /* No-hour view: one big “day column” area per day */
+        <div className="week-nohours">
+          {days.map((day) => (
+            <button
+              key={day.toISOString()}
+              className="week-daycolumn"
+              type="button"
+              onClick={() => onCellClick?.(day)}
+            >
+              {renderCell?.(day)}
+            </button>
           ))}
         </div>
-
-        {/* Hour grid */}
-        <div className="week-grid" role="grid" aria-label="Weekly calendar grid">
-          {hours.map((hour) =>
-            days.map((day) => (
-              <button
-                key={`${day.toISOString()}-${hour}`}
-                className="week-cell"
-                type="button"
-                onClick={() => onCellClick?.(day, hour)}
-              >
-                {renderCell?.(day, hour)}
-              </button>
-            ))
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
