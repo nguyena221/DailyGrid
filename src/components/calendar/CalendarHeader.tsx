@@ -143,17 +143,19 @@ function CalendarHeader({
 
       <div className="cal-header-actions">
         {showHourlyToggle && (
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={!!hourlyEnabled}
-              onChange={(e) => onHourlyToggle?.(e.target.checked)}
-            />
-            <span className="slider" />
-          </label>
-        )}
+          <>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={!!hourlyEnabled}
+                onChange={(e) => onHourlyToggle?.(e.target.checked)}
+              />
+              <span className="slider" />
+            </label>
 
-        {showHourlyToggle && <span className="switch-label">Hourly</span>}
+            <span className="switch-label">Hourly</span>
+          </>
+        )}
 
         <button
           type="button"

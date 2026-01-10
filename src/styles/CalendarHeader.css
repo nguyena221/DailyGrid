@@ -57,7 +57,7 @@
   opacity: 0.7;
 }
 
-/* ===== Toggle switch ===== */
+/* Toggle switch */
 
 .switch {
   width: 44px;
@@ -105,7 +105,7 @@
 }
 
 .switch-label {
-  font-size: 13px;
+  font-size: 29px;
   color: #374151;
   font-weight: 600;
 }
