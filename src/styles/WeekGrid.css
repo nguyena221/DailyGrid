@@ -53,3 +53,28 @@
 .week-cell:nth-child(7n) {
   border-right: 0;
 }
+
+/* No-hour weekly view: 7 equal columns */
+.week-nohours {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.week-daycolumn {
+  min-height: 420px;
+  border: 0;
+  border-right: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.week-daycolumn:nth-child(7n) {
+  border-right: 0;
+}
+
+.week-daycolumn:hover {
+  background: #f9fafb;
+}
